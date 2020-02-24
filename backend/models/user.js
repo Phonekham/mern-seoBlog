@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
@@ -35,7 +35,7 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    salt: Number,
+    salt: String,
     about: {
       type: String
     },
