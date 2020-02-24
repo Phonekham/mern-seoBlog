@@ -1,7 +1,11 @@
+import Layout from "../components/Layout";
+
 const Index = () => {
   return (
     <div>
-      <h2>Index</h2>
+      <Layout>
+        <p>Index page</p>
+      </Layout>
     </div>
   );
 };
