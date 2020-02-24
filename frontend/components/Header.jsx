@@ -6,13 +6,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  NavLink
 } from "reactstrap";
+import { APP_NAME } from "../config";
 
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +18,7 @@ const Header = props => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">{APP_NAME}</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
