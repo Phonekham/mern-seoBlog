@@ -50,19 +50,24 @@ const Header = props => {
               </>
             )}
 
-            {/* <NavItem>
-              <Link href="/signup">
-                <NavLink>Signup</NavLink>
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/signin">
-                <NavLink>Signin</NavLink>
-              </Link>
-            </NavItem>
-            {isAuth() && (
-             
-            )} */}
+            {isAuth() && isAuth().role === 0 && (
+              <NavItem>
+                <Link href="/user">
+                  <NavLink style={{ cursor: "pointer" }}>
+                    {`${isAuth().name}'s Dashboard`}
+                  </NavLink>
+                </Link>
+              </NavItem>
+            )}
+            {isAuth() && isAuth().role === 1 && (
+              <NavItem>
+                <Link href="/admin">
+                  <NavLink style={{ cursor: "pointer" }}>
+                    {`${isAuth().name}'s Dashboard`}
+                  </NavLink>
+                </Link>
+              </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
