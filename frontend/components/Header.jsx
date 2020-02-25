@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { signout, isAuth } from "../actions/auth";
+import { APP_NAME } from "../config";
+import Link from "next/link";
+import Router from "next/router";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   NavLink
 } from "reactstrap";
-import { APP_NAME } from "../config";
-import Link from "next/link";
 
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +25,32 @@ const Header = props => {
         </Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
+          <Nav className="ml-auto" navbar>
+            {isAuth() ? (
+              <NavItem>
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  onClick={() => signout(() => Router.replace("/signin"))}
+                >
+                  Sign Out
+                </NavLink>
+              </NavItem>
+            ) : (
+              <>
+                <NavItem>
+                  <Link href="/signup">
+                    <NavLink style={{ cursor: "pointer" }}>Signup</NavLink>
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link href="/signin">
+                    <NavLink style={{ cursor: "pointer" }}>Signin</NavLink>
+                  </Link>
+                </NavItem>
+              </>
+            )}
+
+            {/* <NavItem>
               <Link href="/signup">
                 <NavLink>Signup</NavLink>
               </Link>
@@ -35,6 +60,9 @@ const Header = props => {
                 <NavLink>Signin</NavLink>
               </Link>
             </NavItem>
+            {isAuth() && (
+             
+            )} */}
           </Nav>
         </Collapse>
       </Navbar>
