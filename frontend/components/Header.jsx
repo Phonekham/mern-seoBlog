@@ -11,6 +11,11 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
+import nProgress from "nprogress";
+
+Router.onRouteChangeStart = url => nProgress.start();
+Router.onRouteChangeComplete = url => nProgress.done();
+Router.onRouteChangeError = url => nProgress.done();
 
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false);
