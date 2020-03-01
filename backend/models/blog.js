@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const { objectId } = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const blogSchema = new Schema(
   {
@@ -33,14 +33,14 @@ const blogSchema = new Schema(
     mdesc: {
       type: String
     },
-    mtitle: {
+    photo: {
       data: Buffer,
       contentType: String
     },
-    categories: [{ type: objectId, ref: "Category", required: true }],
-    tags: [{ type: objectId, ref: "Tag", required: true }],
+    categories: [{ type: ObjectId, ref: "Category", required: true }],
+    tags: [{ type: ObjectId, ref: "Tag", required: true }],
     postedBy: {
-      type: objectId,
+      type: ObjectId,
       ref: "User"
     }
   },
