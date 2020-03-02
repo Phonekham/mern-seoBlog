@@ -14,7 +14,7 @@ router.post("/blog", requireSignin, adminMiddleware, create);
 router.get("/blogs", list);
 router.post("/blogs-categories-tags", listAllBlogsCategoriesTags);
 router.get("/blog/:slug", read);
-router.delete("/blog/:slug", adminMiddleware, requireSignin, remove);
-router.put("/blog/:slug", adminMiddleware, requireSignin, update);
+router.delete("/blog/:slug", requireSignin, adminMiddleware, remove);
+router.put("/blog/:slug", requireSignin, adminMiddleware, update);
 
 module.exports = router;
