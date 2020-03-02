@@ -165,6 +165,24 @@ const CreateBlog = ({ router }) => {
     );
   };
 
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-success"
+      style={{ display: success ? "" : "none" }}
+    >
+      {success}
+    </div>
+  );
+
   const createBlogForm = () => {
     return (
       <form onSubmit={publishBlog}>
@@ -196,15 +214,14 @@ const CreateBlog = ({ router }) => {
   };
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pb-5">
       <div className="row">
         <div className="col-md-8">
-          {createBlogForm()} <hr></hr> {JSON.stringify(title)} <hr></hr>
-          {JSON.stringify(body)}
-          <hr></hr>
-          {JSON.stringify(tags)}
-          <hr></hr>
-          {JSON.stringify(categories)}
+          {createBlogForm()}
+          <div className="pt-3">
+            {showSuccess()}
+            {showError()}
+          </div>
         </div>
         <div className="col-md-4 ">
           <div className="form-group pb-2">
