@@ -8,7 +8,15 @@ import Card from "../../components/blog/Card";
 import { API, APP_NAME, DOMAIN, FB_APP_ID } from "../../config";
 import { Router } from "next/router";
 
-const Blogs = ({ blogs, tags, categories, size, router }) => {
+const Blogs = ({
+  blogs,
+  tags,
+  categories,
+  totalBlogs,
+  blogsLimit,
+  blogSkip,
+  router
+}) => {
   const head = () => (
     <Head>
       <title>Programming blogs | {APP_NAME}</title>
@@ -37,6 +45,43 @@ const Blogs = ({ blogs, tags, categories, size, router }) => {
       <meta property="fb:app_id" content={`${FB_APP_ID}`}></meta>
     </Head>
   );
+
+  const [limit, setLimit] = useState(blogsLimit);
+  const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(totalBlogs);
+  const [loadedBlogs, setLoadedBlogs] = useState([]);
+
+  const loadMore = () => {
+    let toSkip = skip + limit;
+    listBlogsWithCategoriesAndTags(toSkip, limit).then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setLoadedBlogs([...loadedBlogs, ...data.blogs]);
+        setSize(data.size);
+        setSkip(toSkip);
+      }
+    });
+  };
+
+  const loadMoreButton = () => {
+    return (
+      size > 0 &&
+      size >= limit && (
+        <button onClick={loadMore} className="btn btn-primary btn-lg">
+          Load More
+        </button>
+      )
+    );
+  };
+
+  const showLoadedBlogs = () => {
+    return loadedBlogs.map((blog, i) => (
+      <article key={i}>
+        <Card blog={blog}></Card>
+      </article>
+    ));
+  };
 
   const showAllBlogs = () => {
     return blogs.map((blog, i) => {
@@ -84,11 +129,9 @@ const Blogs = ({ blogs, tags, categories, size, router }) => {
               </section>
             </header>
           </div>
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-md-12">{showAllBlogs()}</div>
-            </div>
-          </div>
+          <div className="container-fluid">{showAllBlogs()}</div>
+          <div className="container-fluid">{showLoadedBlogs()}</div>
+          <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
         </main>
       </Layout>
     </React.Fragment>
@@ -96,7 +139,9 @@ const Blogs = ({ blogs, tags, categories, size, router }) => {
 };
 
 Blogs.getInitialProps = () => {
-  return listBlogsWithCategoriesAndTags().then(data => {
+  let skip = 0;
+  let limit = 2;
+  return listBlogsWithCategoriesAndTags(skip, limit).then(data => {
     if (data.error) {
       console.log(data.error);
     } else {
@@ -104,7 +149,9 @@ Blogs.getInitialProps = () => {
         blogs: data.blogs,
         categories: data.categories,
         tags: data.tags,
-        size: data.size
+        totalBlogs: data.size,
+        blogsLimit: limit,
+        blogSkip: skip
       };
     }
   });
