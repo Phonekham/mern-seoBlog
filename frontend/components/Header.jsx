@@ -12,6 +12,7 @@ import {
   NavLink
 } from "reactstrap";
 import nProgress from "nprogress";
+import Search from "./blog/Search";
 
 Router.onRouteChangeStart = url => nProgress.start();
 Router.onRouteChangeComplete = url => nProgress.done();
@@ -23,7 +24,7 @@ const Header = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <React.Fragment>
       <Navbar color="light" light expand="md">
         <Link href="/">
           <NavLink className="font-weight-bold">{APP_NAME}</NavLink>
@@ -83,7 +84,8 @@ const Header = props => {
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+      <Search></Search>
+    </React.Fragment>
   );
 };
 
