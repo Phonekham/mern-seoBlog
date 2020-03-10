@@ -123,7 +123,7 @@ exports.listAllBlogsCategoriesTags = (req, res) => {
   Blog.find({})
     .populate("categories", "_id name slug")
     .populate("tags", "_id name slug")
-    .populate("postedBy", "_id name username")
+    .populate("postedBy", "_id name username profile")
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)

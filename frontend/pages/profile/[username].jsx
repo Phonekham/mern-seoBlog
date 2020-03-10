@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import { userPublicProfile } from "../../actions/user";
-import { API, APP_NAME, DOMAIN, FB_APP_ID } from "../../config";
+import { APP_NAME, DOMAIN, FB_APP_ID } from "../../config";
 import moment from "moment";
 
 const userProfile = ({ user, blogs, query }) => {
