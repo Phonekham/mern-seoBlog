@@ -59,8 +59,15 @@ exports.update = (req, res) => {
     }
     let user = req.profile;
     user = _.extend(user, fields);
+
+    if (fields.password && fields.password.length < 6) {
+      return res.status(400).json({
+        error: "Password should be min 6 characters long"
+      });
+    }
+
     if (files.photo) {
-      if (files.photo.size > 100000) {
+      if (files.photo.size > 1000000) {
         return res.status(400).json({
           error: "photo should be less than 1 MB"
         });

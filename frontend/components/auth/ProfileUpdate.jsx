@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import { getCookie, isAuth } from "../../actions/auth";
 import { getProfile, update } from "../../actions/user";
+import { API } from "../../config";
 
 const ProfileUpdate = () => {
   const [values, setValues] = useState({
@@ -153,7 +154,7 @@ const ProfileUpdate = () => {
         <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}
-          type="text"
+          type="password"
           value={password}
           className="form-control"
         />
@@ -166,12 +167,51 @@ const ProfileUpdate = () => {
     </form>
   );
 
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-success"
+      style={{ display: success ? "" : "none" }}
+    >
+      Profile updated
+    </div>
+  );
+
+  const showLoading = () => (
+    <div
+      className="alert alert-info"
+      style={{ display: loading ? "" : "none" }}
+    >
+      Loading...
+    </div>
+  );
+
   return (
     <React.Fragment>
       <div className="container">
         <div className="row">
-          <div className="col-md-4">image</div>
-          <div className="col-md-8 mb-5">{profileUpdateForm()}</div>
+          <div className="col-md-4">
+            <img
+              src={`${API}/user/photo/${username}`}
+              className="img img-fluid img-thumbnail mb-3"
+              style={{ maxHeight: "auto", maxWidth: "100%" }}
+              alt="user profile"
+            />
+          </div>
+          <div className="col-md-8 mb-5">
+            {showSuccess()}
+            {showError()}
+            {showLoading()}
+            {profileUpdateForm()}
+          </div>
         </div>
       </div>
     </React.Fragment>
