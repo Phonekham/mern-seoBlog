@@ -81,6 +81,16 @@ const Header = props => {
                 </Link>
               </NavItem>
             )}
+            <NavItem>
+              <Link href="/user/crud/blog">
+                <NavLink
+                  style={{ cursor: "pointer" }}
+                  className="btn btn-primary text-white"
+                >
+                  Write a blog
+                </NavLink>
+              </Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

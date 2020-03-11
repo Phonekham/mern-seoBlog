@@ -1,12 +1,12 @@
 import Layout from "../../../components/Layout";
-import Admin from "../../../components/auth/Admin";
+import Private from "../../../components/auth/Private";
 import Link from "next/link";
 import CreateBlog from "../../../components/crud/CreateBlog";
 
 const Blog = () => {
   return (
     <Layout>
-      <Admin>
+      <Private>
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12 pt-5 pb-5">
@@ -17,7 +17,7 @@ const Blog = () => {
             </div>
           </div>
         </div>
-      </Admin>
+      </Private>
     </Layout>
   );
 };
