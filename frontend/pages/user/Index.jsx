@@ -13,14 +13,14 @@ const UserIndex = () => {
                 <h2>User Dashboard</h2>
               </div>
               <div className="col-md-4">
-                <ul class="list-group">
+                <ul className="list-group">
                   <li className="list-group-item">
                     <Link href="/user/crud/blog">
                       <a>Create Blog</a>
                     </Link>
                   </li>
                 </ul>
-                <ul class="list-group">
+                <ul className="list-group">
                   <li className="list-group-item">
                     <Link href="/user/crud/blogs">
                       <a>Update/Delete Blogs</a>
