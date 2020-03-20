@@ -1,4 +1,28 @@
 # mern-seoBlog
+
+## Pattern
+  - React Nextjs Hooks
+  - Rest API
+  
+## Features
+- User Signup / Signin
+- JWT based Authentication System
+- Role Based Authorization System
+- Blogs Search
+- Related Blogs
+- Categories
+- Tags
+- SEO Search Engine Optimization
+- API Development with Node Express MongoDB
+- SSR with NextJs
+- Blog Author Private Contact Form
+- Multiple User Authorization System
+- Social Login with Google
+- Admin / User Dashboard
+- Advance CRUD with Image Upload
+- Load More Blogs
+- DISQUS Commenting System
+
 ## Backend npm
 
 - "body-parser": "^1.19.0" Parse incoming request bodies in a middleware before your handlers, available under the req.body property. [Docs](https://github.com/expressjs/body-parser#readme) 
